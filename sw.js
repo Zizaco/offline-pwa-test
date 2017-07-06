@@ -18,14 +18,14 @@ self.addEventListener("install", function(event) {
            after making HTTP requests for each of them.
         */
         return cache.addAll([
-          '/',
-          '/manifest.json',
-          '/dist/build.js',
-          '/img/favicon-16x16.png',
-          '/img/favicon-32x32.png',
-          '/img/pwa-192x192.png',
-          '/img/pwa-512x512.png',
-          '/img/apple-touch-icon-180x180.png'
+          '/offline-pwa-test/',
+          '/offline-pwa-test/manifest.json',
+          '/offline-pwa-test/dist/build.js',
+          '/offline-pwa-test/img/favicon-16x16.png',
+          '/offline-pwa-test/img/favicon-32x32.png',
+          '/offline-pwa-test/img/pwa-192x192.png',
+          '/offline-pwa-test/img/pwa-512x512.png',
+          '/offline-pwa-test/img/apple-touch-icon-180x180.png'
         ]);
       })
       .then(function() {
