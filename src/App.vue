@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<hc-house house-id="0"></hc-house>
+		<router-view>
+			<hc-house house-id="0"></hc-house>
+		</router-view>
 		<footer>
 			<hc-menu></hc-menu>
 		</footer>
@@ -10,6 +12,7 @@
 <script>
 import Menu from './components/Menu.vue'
 import HouseHub from './components/House/HouseHub.vue'
+import Offline from './infrastructure/offline'
 
 export default {
   name: 'app',
@@ -20,6 +23,11 @@ export default {
   data () {
     return {
     }
+  },
+  mounted() {
+  	let offline = new Offline;
+
+  	offline.initialize();
   }
 }
 </script>

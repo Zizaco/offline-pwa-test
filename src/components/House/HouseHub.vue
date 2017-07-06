@@ -1,26 +1,14 @@
 <template>
-  <div>
-    <hc-house-header></hc-house-header>
+  <transition name="fade">
+    <div>
+      <hc-house-header></hc-house-header>
 
-    <hc-floating-button></hc-floating-button>
+      <hc-floating-button></hc-floating-button>
 
-    <div class="container">
-      <div class="columns is-mobile">
-        <div v-for="room in roomsOf()" class="column is-one-quarter">
-          <div class="has-text-centered">
-            <div>
-              <span class="icon"><i :class="['fa', room.icon]"></i></span>
-            </div>
-            <p>{{ room.name }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div v-for="level in levels">
-        <h2 class="subtitle is-primary">{{ level }}</h2>
+      <div class="container">
         <div class="columns is-mobile">
-          <div v-for="room in roomsOf(level)" class="column is-one-quarter">
-            <div class="has-text-centered">
+          <div v-for="room in roomsOf()" class="column is-one-quarter">
+            <div @click="renameRoom(room)" class="has-text-centered">
               <div>
                 <span class="icon"><i :class="['fa', room.icon]"></i></span>
               </div>
@@ -28,9 +16,23 @@
             </div>
           </div>
         </div>
+
+        <div v-for="level in levels">
+          <h2 class="subtitle is-primary">{{ level }}</h2>
+          <div class="columns is-mobile">
+            <div v-for="room in roomsOf(level)" class="column is-one-quarter">
+              <div @click="renameRoom(room)" class="has-text-centered">
+                <div>
+                  <span class="icon"><i :class="['fa', room.icon]"></i></span>
+                </div>
+                <p>{{ room.name }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -48,7 +50,7 @@ export default {
 
   data () {
     return {
-      house: new House
+      house: House.findOrCreate(1)
     }
   },
 
@@ -61,6 +63,11 @@ export default {
   methods: {
     roomsOf(level = null) {
       return this.house.rooms.filter((r) => r.level == level);
+    },
+
+    renameRoom(room) {
+      room.name = prompt('Rename room', room.name);
+      this.house.save();
     }
   }
 }
@@ -69,9 +76,19 @@ export default {
 <style lang="scss" scoped>
 .container {
   padding: 80px 15px;
+  position: absolute;
+  width: 100%;
 }
 
 .subtitle.is-primary {
   color: #00d1b2;
+}
+
+/* Transition */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0
 }
 </style>

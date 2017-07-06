@@ -24,6 +24,11 @@ export default {
 		width: 60px;
 		font-size: 26px;
 		box-shadow: 0 4px 6px rgba(0,0,0,.15);
+		outline:none;
+		
+		&:-moz-focus-inner {
+		   border: 0;
+		}
 	}
 }
 </style>

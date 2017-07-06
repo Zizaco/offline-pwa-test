@@ -1,18 +1,18 @@
 <template>
 	<section>
 		<nav class="nav">
-			<a class="nav-item is-tab">
+			<router-link class="nav-item is-tab" to="/journal">
 				<span class="icon"><i class="fa fa-book"></i></span>
-			</a>
-			<a class="nav-item is-tab is-active">
+			</router-link>
+			<router-link class="nav-item is-tab" to="/home">
 				<span class="icon"><i class="fa fa-home"></i></span>
-			</a>
-			<a class="nav-item is-tab">
+			</router-link>
+			<router-link class="nav-item is-tab" to="/documents">
 				<span class="icon"><i class="fa fa-file-text"></i></span>
-			</a>
-			<a class="nav-item is-tab">
+			</router-link>
+			<router-link class="nav-item is-tab" to="/contacts">
 				<span class="icon"><i class="fa fa-address-card-o"></i></span>
-			</a>
+			</router-link>
 		</nav>
 	</section>
 </template>
